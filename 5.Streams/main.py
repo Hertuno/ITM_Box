@@ -13,7 +13,6 @@ import os
 import threading
 import aiohttp
 
-
 with open('lorum.txt', 'r') as file:
     print(file.readlines())
 
@@ -34,7 +33,6 @@ async with aiohttp.ClientSession() as session:
 import pandas as pd
 import pathlib
 
-
 work_path = pathlib.Path.cwd()
 data_path = pathlib.Path(work_path, '5.Streams', 'bikes.csv')
 pd.set_option('display.max_columns', None)
@@ -46,7 +44,6 @@ print(data.head(100))
 """
 import pandas as pd
 import pathlib
-
 
 work_path = pathlib.Path.cwd()
 data_path = pathlib.Path(work_path, '5.Streams', 'bikes.csv')
@@ -62,7 +59,6 @@ print(data['Rachel1'].sum())
 import pandas as pd
 import matplotlib.pyplot as plt
 import pathlib
-
 
 plt.style.use('ggplot')  # Красивые графики
 plt.rcParams['figure.figsize'] = (15, 5)  # Размер картинок
@@ -81,7 +77,6 @@ fixed_df.plot(figsize=(15, 10))
 import pandas as pd
 import matplotlib.pyplot as plt
 import pathlib
-
 
 plt.style.use('ggplot')
 plt.rcParams['figure.figsize'] = (10, 5)
@@ -108,7 +103,6 @@ import pandas as pd
 import matplotlib.pyplot as plt
 import pathlib
 
-
 plt.style.use('ggplot')
 plt.rcParams['figure.figsize'] = (10, 5)
 
@@ -126,7 +120,7 @@ berri_bikes = bikes[['Berri 1']].copy()
 # print(berri_bikes[:5])
 berri_bikes.loc[:, 'weekday'] = berri_bikes.index.weekday
 # print(berri_bikes[:5])
-weekday_counts = berri_bikes.groupby('weekday').aggregate(sum)
+weekday_counts = berri_bikes.groupby('weekday').aggregate(sum).sum()
 # print(weekday_counts)
 weekday_counts.index = ['Monday', 'Tuesday', 'Wednesday', 'Thursday', 'Friday', 'Saturday', 'Sunday']
 # print(weekday_counts)
@@ -155,7 +149,6 @@ pd.options.display.max_rows = 7
 plt.style.use('ggplot')
 plt.rcParams['figure.figsize'] = (15, 3)
 plt.rcParams['font.family'] = 'sans-serif'
-
 url_template = ("http://climate.weather.gc.ca/climate_data/bulk_data_e.html?"
                 + "format=csv&"
                 + "stationID=5415&"
@@ -212,7 +205,6 @@ plt.show(block=True)
 import pandas as pd
 import matplotlib.pyplot as plt
 import pathlib
-
 
 pd.options.display.max_rows = 7
 plt.style.use('ggplot')
@@ -271,13 +263,13 @@ requests = pd.read_csv('data/311-service-requests.csv')
 
 requests['Incident Zip'].unique()
 
-na_values = ['NO CLUE', 'N/A', '0',]
+na_values = ['NO CLUE', 'N/A', '0', ]
 
 work_path = pathlib.Path.cwd()
 data_path = pathlib.Path(work_path, '5.Streams', '311-service-requests.csv')
 requests = pd.read_csv(filepath_or_buffer=data_path,
                        na_values=na_values,
-                       dtype={'Incident Zip': str,})
+                       dtype={'Incident Zip': str, })
 
 requests['Incident Zip'].unique()
 
